@@ -1,7 +1,10 @@
 (executables
- (names chap1_A_Guided_Tour chap2_Variables_and_Functions)
- (public_names chap1 chap2)
+ (names
+  chap1_A_Guided_Tour
+  chap2_Variables_and_Functions
+  chap3_Lists_and_Patterns)
+ (public_names chap1 chap2 chap3)
  ; unuse flag pass
  (flags
   (:standard -g -w -32 -warn-error -32))
- (libraries core))
+ (libraries core core_bench))

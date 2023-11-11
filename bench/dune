@@ -1,0 +1,6 @@
+(executables
+ (names match_bench sum_bench)
+ (public_names match_bench sum_bench)
+ (flags
+  (:standard -g -w -32 -warn-error -32))
+ (libraries core core_bench))
