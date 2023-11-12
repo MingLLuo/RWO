@@ -1,0 +1,6 @@
+(executables
+ (names freq)
+ (public_names freq)
+ (flags
+  (:standard -g -w -32 -warn-error -32))
+ (libraries base stdio))
