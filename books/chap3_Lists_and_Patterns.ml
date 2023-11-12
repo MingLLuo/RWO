@@ -176,24 +176,24 @@ let rec remove_sequential_duplicates list =
 
 (* sometimes use when clauses may warning, though they work fine :(  *)
 (* let rec count_some list =
-  match list with
-  | [] ->
-      0
-  | x :: tl when Option.is_none x ->
-      count_some tl
-  | x :: tl when Option.is_some x ->
-      1 + count_some tl *)
+   match list with
+   | [] ->
+       0
+   | x :: tl when Option.is_none x ->
+       count_some tl
+   | x :: tl when Option.is_some x ->
+       1 + count_some tl *)
 
 (* let rec count_some list =
-  match list with
-  | [] ->
-      0
-  | x :: tl when Option.is_none x ->
-      count_some tl
-  | x :: tl when Option.is_some x ->
-      1 + count_some tl
-  | x :: tl ->
-      -1 (*unreachable*) *)
+   match list with
+   | [] ->
+       0
+   | x :: tl when Option.is_none x ->
+       count_some tl
+   | x :: tl when Option.is_some x ->
+       1 + count_some tl
+   | x :: tl ->
+       -1 (*unreachable*) *)
 
 (* better to done *)
 let rec count_some list =
