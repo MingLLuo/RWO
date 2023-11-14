@@ -1,0 +1,6 @@
+(executables
+ (names terminal)
+ (public_names terminal)
+ (flags
+  (:standard -g -w -32 -warn-error -32))
+ (libraries base stdio core))
