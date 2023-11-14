@@ -3,9 +3,10 @@
   chap1_A_Guided_Tour
   chap2_Variables_and_Functions
   chap3_Lists_and_Patterns
-  chap4_Files_Modules_and_Programs)
- (public_names chap1 chap2 chap3 chap4)
+  chap4_Files_Modules_and_Programs
+  chap5_Records)
+ (public_names chap1 chap2 chap3 chap4 chap5)
  ; unuse flag pass
  (flags
-  (:standard -g -w -32-69 -warn-error -32-69))
- (libraries core core_bench))
+  (:standard -g -w @A-4-32-33-40-41-42-43-34-44-60-69 -warn-error -32-33-69))
+ (libraries core core_bench re ppx_jane))
