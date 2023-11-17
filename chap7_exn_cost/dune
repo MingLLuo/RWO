@@ -1,0 +1,9 @@
+(executables
+ (names exn_cost)
+ (public_names exn_cost)
+ (flags
+  (:standard -g -w -32 -warn-error -32))
+ (libraries base stdio core core_bench core_unix.command_unix))
+
+; dune exec -- ./_build/default/chap7_exn_cost/exn_cost.exe  -ascii -quota 1 -clear-columns time cycles
+; OCAMLRUNPARAM=b=0 dune exec -- ./_build/default/chap7_exn_cost/exn_cost.exe -ascii -quota 1 -clear-columns time cycles
