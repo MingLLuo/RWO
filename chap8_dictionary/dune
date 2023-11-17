@@ -1,0 +1,6 @@
+(executables
+ (names dictionary)
+ (public_names dictionary)
+ (flags
+  (:standard -g -w -32 -warn-error -32))
+ (libraries base stdio core core_bench core_unix.command_unix))

@@ -112,8 +112,10 @@ let lookup_weight ~compute_weight alist key =
   with Key_not_found _ -> 0.
 ;;
 
-lookup_weight ~compute_weight:(fun _ -> raise (Key_not_found "foo")) ["a",3; "b",4] "a";;
-
+lookup_weight
+  ~compute_weight:(fun _ -> raise (Key_not_found "foo"))
+  [ ("a", 3); ("b", 4) ]
+  "a"
 
 let lookup_weight ~compute_weight alist key =
   match try Some (find_exn alist key) with _ -> None with
@@ -135,8 +137,8 @@ exception Empty_list
 
 let list_max = function
   | [] -> raise Empty_list
-  | hd :: tl -> List.fold tl ~init:hd ~f:(Int.max)
+  | hd :: tl -> List.fold tl ~init:hd ~f:Int.max
 
 let () =
-  printf "%d\n" (list_max [1;2;3]);
+  printf "%d\n" (list_max [ 1; 2; 3 ]);
   printf "%d\n" (list_max [])

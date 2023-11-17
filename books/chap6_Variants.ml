@@ -138,9 +138,9 @@ let messages_for_user user (messages : (Common.t * details) list) =
   List.rev user_messages
 
 (* type details =
-  | Logon of { user : string; credentials : string }
-  | Heartbeat of { status_message : string }
-  | Log_entry of { important : bool; message : string } *)
+   | Logon of { user : string; credentials : string }
+   | Heartbeat of { status_message : string }
+   | Log_entry of { important : bool; message : string } *)
 
 let messages_for_user user (messages : (Common.t * details) list) =
   let user_messages, _ =
@@ -217,6 +217,7 @@ let rec simplify = function
 
 (* Polymorphic Variants *)
 let three = `Int 3
+
 (* val three : [> `Int of int ] = `Int 3 *)
 let four = `Float 4.
 let nan = `Not_a_number;;
