@@ -7,10 +7,11 @@
   chap5_Records
   chap6_Variants
   chap7_Error_Handling
-  chap8_Imperative_Programming)
+  chap8_Imperative_Programming
+  chap9_GADTs)
  (preprocess
   (pps ppx_jane))
- (public_names chap1 chap2 chap3 chap4 chap5 chap6 chap7 chap8)
+ (public_names chap1 chap2 chap3 chap4 chap5 chap6 chap7 chap8 chap9)
  (flags
   (:standard
    -g
