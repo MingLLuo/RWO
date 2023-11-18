@@ -9,10 +9,22 @@
   chap7_Error_Handling
   chap8_Imperative_Programming
   chap9_GADTs
-  chap10_Functors)
+  chap10_Functors
+  chap11_First_Class_Modules)
  (preprocess
   (pps ppx_jane))
- (public_names chap1 chap2 chap3 chap4 chap5 chap6 chap7 chap8 chap9 chap10)
+ (public_names
+  chap1
+  chap2
+  chap3
+  chap4
+  chap5
+  chap6
+  chap7
+  chap8
+  chap9
+  chap10
+  chap11)
  (flags
   (:standard
    -g
