@@ -15,7 +15,6 @@ type _ expr =
   | Plus : int expr * int expr -> int expr
   | If : bool expr * 'a expr * 'a expr -> 'a expr
 
-
 (* OCaml by default isn’t willing to instantiate ordinary type variables in different ways in the body of the same function *)
 (* We can fix that by adding a locally abstract type, which doesn’t have that restriction.   *)
 let eval_value : type a. a value -> a = function Int x -> x | Bool x -> x
