@@ -10,7 +10,8 @@
   chap8_Imperative_Programming
   chap9_GADTs
   chap10_Functors
-  chap11_First_Class_Modules)
+  chap11_First_Class_Modules
+  chap12_Objects)
  (preprocess
   (pps ppx_jane))
  (public_names
@@ -24,7 +25,8 @@
   chap8
   chap9
   chap10
-  chap11)
+  chap11
+  chap12)
  (flags
   (:standard
    -g
