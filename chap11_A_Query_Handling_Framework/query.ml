@@ -21,10 +21,10 @@ module type Query_handler = sig
       s-expressions *)
 end
 
-type u = { a : int; b : float } [@@deriving sexp];;
+type u = { a : int; b : float } [@@deriving sexp]
 
-sexp_of_u { a = 3; b = 7. };;
-u_of_sexp (Core.Sexp.of_string "((a 43) (b 3.4))")
+let x = sexp_of_u { a = 3; b = 7. }
+let x = u_of_sexp (Core.Sexp.of_string "((a 43) (b 3.4))")
 
 module type M = sig
   type t [@@deriving sexp]
@@ -46,10 +46,10 @@ module Unique = struct
         response
 end
 
-let unique = Unique.create 0;;
+let unique = Unique.create 0
 
-Unique.eval unique (Sexp.List []);;
-Unique.eval unique (Sexp.List [])
+(* Unique.eval unique (Sexp.List []);;
+   Unique.eval unique (Sexp.List []) *)
 
 module List_dir = struct
   type config = string [@@deriving sexp]
@@ -69,10 +69,10 @@ module List_dir = struct
         Ok (Array.sexp_of_t String.sexp_of_t (Sys_unix.readdir dir))
 end
 
-let list_dir = List_dir.create "/var";;
+let list_dir = List_dir.create "/var"
 
-List_dir.eval list_dir (sexp_of_string ".");;
-List_dir.eval list_dir (sexp_of_string "yp")
+(* List_dir.eval list_dir (sexp_of_string ".");;
+   List_dir.eval list_dir (sexp_of_string "yp") *)
 
 module type Query_handler_instance = sig
   module Query_handler : Query_handler

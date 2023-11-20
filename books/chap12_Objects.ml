@@ -13,12 +13,11 @@ let s =
 
     method push hd = v <- hd :: v
   end
-;;
 
 (* The syntax for a method invocation uses the # character *)
-s#pop;;
-s#push 4;;
-s#pop
+(* s#pop;;
+   s#push 4;;
+   s#pop *)
 
 let stack init =
   object
@@ -34,9 +33,9 @@ let stack init =
     method push hd = v <- hd :: v
   end
 
-let s = stack [ 3; 2; 1 ];;
+let s = stack [ 3; 2; 1 ]
 
-s#pop
+(* s#pop *)
 
 (* Object Polymorphism *)
 
@@ -61,9 +60,8 @@ let sq =
 
 (* The .. in an open object type is an elision, standing for “possibly more methods.” *)
 
-let print_pop st = Option.iter ~f:(Stdio.printf "Popped: %d\n") st#pop;;
-
-print_pop (stack [ 5; 4; 3; 2; 1 ])
+let print_pop st = Option.iter ~f:(Stdio.printf "Popped: %d\n") st#pop
+let () = print_pop (stack [ 5; 4; 3; 2; 1 ])
 
 (* Immutable Objects *)
 let imm_stack init =
@@ -74,10 +72,10 @@ let imm_stack init =
   end
 
 let s = imm_stack [ 3; 2; 1 ]
-let r = s#push 4;;
+let r = s#push 4
 
-s#pop;;
-r#pop
+(* s#pop;;
+   r#pop *)
 
 (* Subtyping *)
 (* Width Subtyping *)
@@ -89,11 +87,10 @@ let square w =
     method area = Float.of_int (w * w)
     method width = w
   end
-;;
 
 (* the coercion :> must be explicit: *)
 (* (square 10 : shape);; *)
-(square 10 :> shape)
+let x = (square 10 :> shape)
 (* This form of object subtyping is called width subtyping. Width subtyping means that an object type A is a subtype of B, if A has all of the methods of B, and possibly more. A square is a subtype of shape because it implements all of the methods of shape, which in this case means the area method. *)
 
 (* Depth Subtyping *)

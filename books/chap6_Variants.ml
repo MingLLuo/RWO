@@ -43,13 +43,11 @@ let color_to_int = function
   | Gray i -> 232 + i
 
 let color_print color s = printf "%s\n" (color_by_number (color_to_int color) s)
-;;
-
-color_print (Basic (Red, Bold)) "A bold red!";;
-color_print (Gray 4) "A muted gray...";;
+let () = color_print (Basic (Red, Bold)) "A bold red!"
+let () = color_print (Gray 4) "A muted gray..."
 
 (* Variants with multiple arguments  *)
-RGB (200, 200, 200)
+(* RGB (200, 200, 200) *)
 
 let purple = (200, 0, 200)
 
@@ -220,9 +218,9 @@ let three = `Int 3
 
 (* val three : [> `Int of int ] = `Int 3 *)
 let four = `Float 4.
-let nan = `Not_a_number;;
+let nan = `Not_a_number
 
-[ three; four; nan ]
+(* [ three; four; nan ] *)
 
 (* The > at the beginning of the variant types above is critical because it marks the types as being open to combination with other variant types. *)
 

@@ -1,6 +1,7 @@
-open Core
 open Re
 open Core_unix
+open Time_ns_unix
+open Core
 
 type service_info = { service_name : string; port : int; protocol : string }
 
@@ -23,15 +24,14 @@ let parse_lines parse file_contents =
   let lines = String.split ~on:'\n' file_contents in
   List.mapi lines ~f:(fun line_num line ->
       { item = parse line; line_num = line_num + 1 })
-;;
 
-parse_lines service_info_of_string
-  "rtmp              1/ddp     # Routing Table Maintenance Protocol\n\
-  \   tcpmux            1/udp     # TCP Port Service Multiplexer\n\
-  \   tcpmux            1/tcp     # TCP Port Service Multiplexer"
-;;
+let x =
+  parse_lines service_info_of_string
+    "rtmp              1/ddp     # Routing Table Maintenance Protocol\n\
+    \   tcpmux            1/udp     # TCP Port Service Multiplexer\n\
+    \   tcpmux            1/tcp     # TCP Port Service Multiplexer"
 
-parse_lines Int.of_string "1\n10\n100\n1000"
+let x = parse_lines Int.of_string "1\n10\n100\n1000"
 
 let service_info_to_string { service_name = name; port; protocol = prot } =
   sprintf "%s %i/%s" name port prot
@@ -191,7 +191,7 @@ let show_field field to_string record =
 let logon =
   {
     Logon.session_id = "26685";
-    time = Time_ns.of_string_with_utc_offset "2017-07-21 10:11:45Z";
+    time = Time_ns.of_string "2017-07-21 10:11:45Z";
     user = "yminsky";
     credentials = "Xy2d9W";
   }

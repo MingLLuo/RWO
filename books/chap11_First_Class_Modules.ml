@@ -75,22 +75,22 @@ let int_bumper = (module Int_bumper : Bumpable)
    Bumper.bump 3 *)
 
 let int_bumper = (module Int_bumper : Bumpable with type t = int)
-let float_bumper = (module Float_bumper : Bumpable with type t = float);;
+let float_bumper = (module Float_bumper : Bumpable with type t = float)
 
 (* Exposing types *)
-let (module Bumper1) = int_bumper in
-Bumper1.bump 3
-;;
+let x =
+  let (module Bumper1) = int_bumper in
+  Bumper1.bump 3
 
-let (module Bumper1) = float_bumper in
-Bumper1.bump 3.5
+let x =
+  let (module Bumper1) = float_bumper in
+  Bumper1.bump 3.5
 
 let bump_list (type a) (module Bumper : Bumpable with type t = a) (l : a list) =
   List.map ~f:Bumper.bump l
-;;
 
-bump_list int_bumper [ 1; 2; 3 ];;
-bump_list float_bumper [ 1.5; 2.5; 3.5 ]
+(* bump_list int_bumper [ 1; 2; 3 ];;
+   bump_list float_bumper [ 1.5; 2.5; 3.5 ] *)
 
 (* ABSTRACT TYPES *)
 let wrap_in_list (type b) (x : b) = [ x ]

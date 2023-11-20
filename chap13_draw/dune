@@ -1,0 +1,11 @@
+(executables
+ (names shapes)
+ (public_names shapes)
+ (flags
+  (:standard
+   -g
+   -w
+   @A-4-7-27-32-33-37-40-41-42-43-34-44-60-69
+   -warn-error
+   -32-33-69))
+ (libraries async_graphics))

@@ -85,9 +85,8 @@ let print_stringable (Stringable s) = Stdio.print_endline (s.to_string s.value)
 let stringables =
   let s value to_string = Stringable { to_string; value } in
   [ s 100 Int.to_string; s 12.3 Float.to_string; s "foo" Fn.id ]
-;;
 
-List.iter ~f:print_stringable stringables
+let () = List.iter ~f:print_stringable stringables
 (* let get_value (Stringable s) = s.value;;
    (* It’s worth spending a moment to decode this error message, and the meaning of the type variable $Stringable_'a in particular. You can think of this variable as having three parts:
 

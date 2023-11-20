@@ -7,11 +7,12 @@ let () = Caml.print_endline (Bytes.to_string b)
 let x = ref 1
 let ref x = { contents = x }
 let ( ! ) r = r.contents
-let ( := ) r x = r.contents <- x;;
+let ( := ) r x = r.contents <- x
 
-for i = 0 to 3 do
-  printf "i = %d\n" i
-done
+let () =
+  for i = 0 to 3 do
+    printf "i = %d\n" i
+  done
 
 let rev_inplace ar =
   let i = ref 0 in
@@ -35,10 +36,8 @@ let v =
   lazy
     (print_endline "performing lazy computation";
      Float.sqrt 16.)
-;;
 
-Lazy.force v
-
+let x = Lazy.force v
 let x = Lazy.force v
 let () = Caml.print_float x
 
@@ -99,20 +98,15 @@ let time f =
   let stop = Time.now () in
   printf "Time: %F ms\n" (Time.diff stop start |> Time.Span.to_ms);
   x
-;;
 
-time (fun () -> edit_distance "OCaml" "ocaml");;
-time (fun () -> edit_distance "OCaml 4.13" "ocaml 4.13")
-
-let rec fib i = if i <= 1 then i else fib (i - 1) + fib (i - 2);;
-
-time (fun () -> fib 20);;
-time (fun () -> fib 40)
-
-let fib = memoize (module Int) fib;;
-
-time (fun () -> fib 40);;
-time (fun () -> fib 40)
+let x = time (fun () -> edit_distance "OCaml" "ocaml")
+let x = time (fun () -> edit_distance "OCaml 4.13" "ocaml 4.13")
+let rec fib i = if i <= 1 then i else fib (i - 1) + fib (i - 2)
+let x = time (fun () -> fib 20)
+let x = time (fun () -> fib 40)
+let fib = memoize (module Int) fib
+let x = time (fun () -> fib 40)
+let x = time (fun () -> fib 40)
 
 (* unwind recursion *)
 let fib_norec fib i = if i <= 1 then i else fib (i - 1) + fib (i - 2)
@@ -131,10 +125,10 @@ let memo_rec m f_norec x =
   fref := f;
   f x
 
-let fib = memo_rec (module Int) fib_norec;;
+let fib = memo_rec (module Int) fib_norec
 
-time (fun () -> fib 40);;
-time (fun () -> fib 40)
+(* time (fun () -> fib 40);;
+   time (fun () -> fib 40) *)
 
 let fib =
   memo_rec
@@ -173,9 +167,8 @@ let edit_distance =
               edit_distance (s, t') + 1;
               edit_distance (s', t') + cost_to_drop_both;
             ])
-;;
 
-time (fun () -> edit_distance ("OCaml 4.09", "ocaml 4.09"))
+(* time (fun () -> edit_distance ("OCaml 4.09", "ocaml 4.09")) *)
 
 (* let memo_rec m f_norec =
      let rec f = memoize m (fun x -> f_norec f x) in
@@ -205,9 +198,8 @@ let fmt = "%i is an integer\n"
 (* let () = Printf.printf fmt 1, wrong *)
 open CamlinternalFormatBasics
 
-let fmt : ('a, 'b, 'c) format = "%i is an integer\n";;
-
-printf fmt 3
+let fmt : ('a, 'b, 'c) format = "%i is an integer\n"
+let () = printf fmt 3
 
 (* file I/O *)
 let create_number_file filename numbers =
@@ -222,12 +214,12 @@ let sum_file filename =
       let numbers = List.map ~f:Int.of_string (In_channel.input_lines file) in
       List.fold ~init:0 ~f:( + ) numbers)
     ~finally:(fun () -> In_channel.close file)
-;;
 
 (* ignore(f x) --> f x; () *)
-for _ = 1 to 10000 do
-  try ignore (sum_file "/etc/hosts" : int) with _ -> ()
-done
+let () =
+  for _ = 1 to 10000 do
+    try ignore (sum_file "/etc/hosts" : int) with _ -> ()
+  done
 
 let () = try sum_file "numbers.txt" |> Caml.print_int with _ -> ()
 
@@ -240,49 +232,49 @@ let sum_file filename =
   In_channel.with_file filename ~f:(fun file ->
       In_channel.fold_lines file ~init:0 ~f:(fun sum line ->
           sum + Int.of_string line))
-;;
 
 (* order of evaluation *)
-let x = Float.sin 120. in
-let y = Float.sin 75. in
-let z = Float.sin 128. in
-List.exists ~f:(fun x -> Float.O.(x < 0.)) [ x; y; z ]
-;;
+let m =
+  let x = Float.sin 120. in
+  let y = Float.sin 75. in
+  let z = Float.sin 128. in
+  List.exists ~f:(fun x -> Float.O.(x < 0.)) [ x; y; z ]
 
-let x = lazy (Float.sin 120.) in
-let y = lazy (Float.sin 75.) in
-let z = lazy (Float.sin 128.) in
-List.exists ~f:(fun x -> Float.O.(Lazy.force x < 0.)) [ x; y; z ]
-;;
+let m =
+  let x = lazy (Float.sin 120.) in
+  let y = lazy (Float.sin 75.) in
+  let z = lazy (Float.sin 128.) in
+  List.exists ~f:(fun x -> Float.O.(Lazy.force x < 0.)) [ x; y; z ]
 
-let x =
-  lazy
-    (printf "1\n";
-     Float.sin 120.)
-in
-let y =
-  lazy
-    (printf "2\n";
-     Float.sin 75.)
-in
-let z =
-  lazy
-    (printf "3\n";
-     Float.sin 128.)
-in
-List.exists ~f:(fun x -> Float.O.(Lazy.force x < 0.)) [ x; y; z ]
-;;
+let m =
+  let x =
+    lazy
+      (printf "1\n";
+       Float.sin 120.)
+  in
+  let y =
+    lazy
+      (printf "2\n";
+       Float.sin 75.)
+  in
+  let z =
+    lazy
+      (printf "3\n";
+       Float.sin 128.)
+  in
+  List.exists ~f:(fun x -> Float.O.(Lazy.force x < 0.)) [ x; y; z ]
 
-List.exists
-  ~f:(fun x -> Float.O.(x < 0.))
-  [
-    (printf "1\n";
-     Float.sin 120.);
-    (printf "2\n";
-     Float.sin 75.);
-    (printf "3\n";
-     Float.sin 128.);
-  ]
+let m =
+  List.exists
+    ~f:(fun x -> Float.O.(x < 0.))
+    [
+      (printf "1\n";
+       Float.sin 120.);
+      (printf "2\n";
+       Float.sin 75.);
+      (printf "3\n";
+       Float.sin 128.);
+    ]
 
 (* Side Effects and Weak Polymorphism *)
 

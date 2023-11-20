@@ -37,8 +37,11 @@ let upcase_first_entry line =
 
 let () = Caml.print_endline (upcase_first_entry "hello,world")
 
+[@@@ocamlformat "disable"]
+
 (* let and fun *)
-let () = printInt ((fun x -> x + 1) 7) [@ocamlformat "disable"]
+let () = printInt ((fun x -> x + 1) 7)
+
 
 let () =
   let x = 7 in
@@ -47,7 +50,8 @@ let () =
 (* multiargument function *)
 let abs_diff = (
   fun x -> (fun y -> abs (x - y))
-)  [@ocamlformat "disable"]
+)
+[@@@ocamlformat "enable"]
 
 let () = printInt (abs_diff 3 4)
 
@@ -59,16 +63,17 @@ let () = printInt (abs_diff (3, 4))
 let rec is_even x = if x = 0 then true else is_odd (x - 1)
 and is_odd x = if x = 0 then false else is_even (x - 1)
 
-let () = Caml.print_endline "Even or Odd";;
-
-List.map ~f:(fun x -> if is_even x then printInt x) [ 0; 1; 2; 3; 4; 5 ];;
-List.map ~f:(fun x -> if is_odd x then printInt x) [ 0; 1; 2; 3; 4; 5 ]
-
+let () = Caml.print_endline "Even or Odd"
+let x = List.map ~f:(fun x -> if is_even x then printInt x) [ 0; 1; 2; 3; 4; 5 ]
+let x = List.map ~f:(fun x -> if is_odd x then printInt x) [ 0; 1; 2; 3; 4; 5 ]
 (* prefix and infix *)
+
+[@@@ocamlformat "disable"]
 let () = Int.max 3 4 |> printInt
 let () = 3 + 4 |> printInt
-let () = 3 + 4 |> printInt  [@ocamlformat "disable"]
+let () = 3 + 4 |> printInt 
 let () = List.map ~f:(( + ) 3) [ 1; 2; 3; 4 ] |> List.iter ~f:printInt
+[@@@ocamlformat "enable"]
 
 (* difine or redifine operator *)
 let ( +! ) (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
@@ -93,11 +98,11 @@ let () =
   String.split ~on:':' path
   |> List.dedup_and_sort ~compare:String.compare
   |> List.iter ~f:print_endline
-;;
 
-let split_path = String.split ~on:':' path in
-let deduped_path = List.dedup_and_sort ~compare:String.compare split_path in
-List.iter ~f:print_endline deduped_path
+let x =
+  let split_path = String.split ~on:':' path in
+  let deduped_path = List.dedup_and_sort ~compare:String.compare split_path in
+  List.iter ~f:print_endline deduped_path
 
 (* right associative *)
 (* https://v2.ocaml.org/api/Ocaml_operators.html *)
@@ -122,9 +127,8 @@ let divide ~first ~second = first / second
 
 (* error disordered argument *)
 (* apply_to_tuple_2 divide (4,2) *)
-let apply_to_tuple f (first, second) = f ~first ~second;;
-
-apply_to_tuple divide (4, 2)
+let apply_to_tuple f (first, second) = f ~first ~second
+let x = apply_to_tuple divide (4, 2)
 
 (* optional argument *)
 let concat ?sep x y =

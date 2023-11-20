@@ -53,15 +53,15 @@ module Rev_int_interval = Make_interval (struct
   let compare x y = Int.compare y x
 end)
 
-let rev_interval = Rev_int_interval.create 4 3;;
+let rev_interval = Rev_int_interval.create 4 3
 
 (* illegal use of type t, they are different
     *)
 (* Int_interval.contains rev_interval 3;; *)
 
 (* wrong case *)
-Int_interval.is_empty (* going through create *) (Int_interval.create 4 3);;
-Int_interval.is_empty (* bypassing create *) (Int_interval.Interval (4, 3))
+(* Int_interval.is_empty (* going through create *) (Int_interval.create 4 3);;
+   Int_interval.is_empty (* bypassing create *) (Int_interval.Interval (4, 3)) *)
 
 (* because Int_interval.t is not abstract, we can bypass create function *)
 module type Interval_intf = sig
@@ -189,9 +189,9 @@ module Make_interval3 (Endpoint : Comparable) :
     | Interval (l1, h1), Interval (l2, h2) -> create (max l1 l2) (min h1 h2)
 end
 
-module Int_interval4 = Make_interval3 (Int);;
+module Int_interval4 = Make_interval3 (Int)
 
-Int_interval4.is_empty (Int_interval4.create 3 4)
+(* Int_interval4.is_empty (Int_interval4.create 3 4) *)
 
 (* Int_interval4.is_empty (Int_interval4.Interval (4, 3)) *)
 
@@ -238,7 +238,7 @@ end) : Interval_intf_with_sexp with type endpoint := Endpoint.t = struct
     | Interval (l1, h1), Interval (l2, h2) -> create (max l1 l2) (min h1 h2)
 end
 
-module Int_interval5 = Make_interval5 (Int);;
-
-Int_interval5.sexp_of_t (Int_interval5.create 3 4);;
-Int_interval5.sexp_of_t (Int_interval5.create 4 3)
+module Int_interval5 = Make_interval5 (Int)
+(*
+   Int_interval5.sexp_of_t (Int_interval5.create 3 4);;
+   Int_interval5.sexp_of_t (Int_interval5.create 4 3) *)

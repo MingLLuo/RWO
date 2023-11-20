@@ -3,4 +3,11 @@
  (public_names pipeline)
  (flags
   (:standard -g -w -32 -warn-error -32))
- (libraries base stdio core core_bench core_unix.command_unix))
+ (libraries
+  base
+  stdio
+  core
+  core_bench
+  core_unix
+  core_unix.sys_unix
+  core_unix.command_unix))

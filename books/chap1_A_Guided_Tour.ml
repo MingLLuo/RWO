@@ -54,16 +54,18 @@ let distance (x1, y1) (x2, y2) =
 
 (* exp1: exponentiation *)
 (* stdlib *)
-let _ = 1. **. 2.
-let _ = 1. ** 2.
+let _ : float = 1. **. 2.
+let _ : float = 1. ** 2.
 
 (* Base *)
-let _ = Base.( ** ) 1 2
-let _ = Base.( **. ) 1. 2.
+let _ : int = Base.( ** ) 1 2
+let _ : float = Base.( **. ) 1. 2.
 
+[@@@ocamlformat "disable"]
 (* comma for tuple, semicolon for list element *)
-let _ : (int * int * int) list = [ 1, 2, 3 ] [@ocamlformat "disable"]
+let _ : (int * int * int) list = [ 1, 2, 3 ] 
 let _ : int list = [ 1; 2; 3 ]
+[@@@ocamlformat "enable"]
 
 (* String.rsplit2 split the string based on the rightmost period found in the string. *)
 let downcase_extension filename =
@@ -113,13 +115,10 @@ let rsum = create ()
 let () = List.iter [ 1.; 3.; 2.; -7.; 4.; 5. ] ~f:(fun x -> update rsum x)
 
 (* ref *)
-let x = { contents = 0 };;
-
-x.contents <- x.contents + 1
-
-let x = ref 0;;
-
-x := !x + 1
+let x = { contents = 0 }
+let () = x.contents <- x.contents + 1
+let x = ref 0
+let () = x := !x + 1
 
 (* implement of ref *)
 type 'a ref = { mutable contents : 'a }
@@ -140,10 +139,8 @@ let permute array =
     array.(j) <- tmp
   done
 
-let ar = Array.init 20 ~f:(fun i -> i);;
-
-permute ar
-
+let ar = Array.init 20 ~f:(fun i -> i)
+let () = permute ar
 let () = printIntArray ar
 
 (* while loop *)
@@ -157,9 +154,8 @@ let find_first_negative_entry array =
     pos := !pos + 1
   done;
   if !pos = Array.length array then None else Some !pos
-;;
 
-find_first_negative_entry [| 1; 2; 0; -3 |]
+let x = find_first_negative_entry [| 1; 2; 0; -3 |]
 
 (* type ctrl + d *)
 let rec read_and_accumulate accum =
