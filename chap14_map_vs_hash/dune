@@ -1,0 +1,7 @@
+(executables
+ (names map_vs_hash map_vs_hash2)
+ (public_names map_vs_hash map_vs_hash2)
+ (libraries base core_bench core_unix.command_unix))
+
+; ./_build/default/chap14_map_vs_hash/map_vs_hash.exe -ascii -quota 1 -clear-columns time speedup
+; ./_build/default/chap14_map_vs_hash/map_vs_hash2.exe -ascii -clear-columns time speedup

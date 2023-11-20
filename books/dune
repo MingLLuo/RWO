@@ -12,7 +12,8 @@
   chap10_Functors
   chap11_First_Class_Modules
   chap12_Objects
-  chap13_Classes)
+  chap13_Classes
+  chap14_Maps_and_Hash_Tables)
  (preprocess
   (pps ppx_jane))
  (public_names
@@ -28,7 +29,8 @@
   chap10
   chap11
   chap12
-  chap13)
+  chap13
+  chap14)
  (flags
   (:standard
    -g
