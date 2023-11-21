@@ -13,7 +13,8 @@
   chap11_First_Class_Modules
   chap12_Objects
   chap13_Classes
-  chap14_Maps_and_Hash_Tables)
+  chap14_Maps_and_Hash_Tables
+  chap15_Command_Line_Parsing)
  (preprocess
   (pps ppx_jane))
  (public_names
@@ -30,7 +31,8 @@
   chap11
   chap12
   chap13
-  chap14)
+  chap14
+  chap15)
  (flags
   (:standard
    -g

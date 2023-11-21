@@ -1,0 +1,18 @@
+(executable
+ (name cal)
+ (libraries
+  core
+  core_unix.command_unix
+  core_unix.filename_unix
+  core_unix.sys_unix)
+ (flags
+  (:standard
+   -g
+   -w
+   @A-4-7-27-32-33-37-40-41-42-43-34-44-60-69
+   -warn-error
+   -32-33-69))
+ (preprocess
+  (pps ppx_jane)))
+
+; dune exec -- ./chap15_cal/cal.exe -build-info
