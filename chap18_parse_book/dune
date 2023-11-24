@@ -1,0 +1,4 @@
+(executable
+ (name parse_book)
+ (public_name parse_book)
+ (libraries base core yojson))

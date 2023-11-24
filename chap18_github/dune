@@ -1,0 +1,22 @@
+(rule
+ (targets github_org_j.ml github_org_j.mli)
+ (deps github_org.atd)
+ (mode fallback)
+ (action
+  (run atdgen -j %{deps})))
+
+(rule
+ (targets github_org_t.ml github_org_t.mli)
+ (deps github_org.atd)
+ (mode fallback)
+ (action
+  (run atdgen -t %{deps})))
+
+(executable
+ (name github_org_info)
+ (public_name github_org_info)
+ (libraries core yojson atdgen shell core_unix.command_unix)
+ (flags :standard -w -32)
+ (modules github_org_info github_org_t github_org_j))
+
+; dune exec -- ./chap18_github/github_org_info.exe mirage

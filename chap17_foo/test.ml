@@ -39,7 +39,6 @@ let%expect_test _ =
   let hrefs = get_href_hosts soup in
   print_s [%sexp (hrefs : Set.M(String).t)]
 
-
-  (* Quoted String *)
-  let x = {|This is a literal quote: "|};;
-  let y = {xxx|This is how you quote a {|quoted string|}|xxx};;
+(* Quoted String *)
+let x = {|This is a literal quote: "|}
+let y = {xxx|This is how you quote a {|quoted string|}|xxx}
