@@ -1,0 +1,14 @@
+(menhir
+ (modules parser))
+
+(ocamllex lexer)
+
+; (library
+;  (name json_parser)
+;  (modules parser lexer json)
+;  (libraries core))
+
+(executable
+ (name test)
+ (modules test parser lexer json)
+ (libraries core core_unix.command_unix))
